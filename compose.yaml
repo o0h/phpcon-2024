@@ -2,7 +2,8 @@ services:
   app:
     build: .
     volumes:
-      - ./app:/app
-    working_dir: /app
-    environment:
-      - GITHUB_OAUTH_TOKEN
+      - ./example:/opt/example
+      - ./work:/opt/work
+    working_dir: /opt
+    env_file:
+      - runtime.env
