@@ -1,3 +1,5 @@
 **/vendor/
-!/app/require/vendor/
-!/.env
+**.cache
+example/require/composer.json
+example/require/composer.lock
+runtime.env
