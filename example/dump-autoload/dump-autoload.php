@@ -1,18 +1,21 @@
 <?php
 
 declare(strict_types=1);
+use Symfony\Polyfill\Mbstring\Mbstring;
 
 $workingDir = getcwd();
 
 $cliOpts = getopt('c:');
 if (!array_key_exists('c', $cliOpts)) {
-    echo 'vendorディレクトリの位置を指定してください(-c)' . PHP_EOL;
+    echo 'vendorディレクトリの位置を指定してください(-c)'.PHP_EOL;
+
     exit(1);
 }
 
 $vendorDir = $cliOpts['c'];
 if (!is_dir($vendorDir)) {
-    echo "{$vendorDir}が存在しません" . PHP_EOL;
+    echo "{$vendorDir}が存在しません".PHP_EOL;
+
     exit(1);
 }
 
@@ -37,11 +40,11 @@ foreach ($packageFiles as $packageFile) {
     }
 }
 
-# vendorに配置
-file_put_contents("{$vendorDir}/autoload_classmap_psr4.php", '<?php return ' . var_export($psr4ClassMaps, true) . ';');
-file_put_contents("{$vendorDir}/autoload_files.php", '<?php return ' . var_export($autoloadFiles, true) . ';');
-copy(__DIR__ . '/autoload.php',  "{$vendorDir}/autoload.php");
+// vendorに配置
+file_put_contents("{$vendorDir}/autoload_classmap_psr4.php", '<?php return '.var_export($psr4ClassMaps, true).';');
+file_put_contents("{$vendorDir}/autoload_files.php", '<?php return '.var_export($autoloadFiles, true).';');
+copy(__DIR__.'/autoload.php', "{$vendorDir}/autoload.php");
 
-# test
+// test
 require "{$vendorDir}/autoload.php";
-assert(class_exists(Symfony\Polyfill\Mbstring\Mbstring::class));
+assert(class_exists(Mbstring::class));

@@ -27,15 +27,16 @@ foreach ($requirePackageNames as $requirePackageName) {
         // 3.0.0-RC2 (suffix with number)
         if (str_contains($versionNormalized, '-')) {
             $suffix = explode('-', $versionNormalized)[1];
-            if (preg_match('#(' . implode('|', ['dev', 'alpha', 'beta', 'RC']) . ')#', $suffix)) {
+            if (preg_match('#('.implode('|', ['dev', 'alpha', 'beta', 'RC']).')#', $suffix)) {
                 continue;
             }
         }
         $determined = $candidate;
+
         break;
     }
     if (!$determined) {
-        throw new \RuntimeException('stable version not provided');
+        throw new RuntimeException('stable version not provided');
     }
 
     $sourceData[$determined['name']] = $determined['version'];
@@ -52,7 +53,7 @@ $composerJsonData = [
     'require' => $sourceData,
 ];
 ksort($composerJsonData['require']);
-file_put_contents("{$workingDir}/composer.json", json_encode($composerJsonData, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+file_put_contents("{$workingDir}/composer.json", json_encode($composerJsonData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
 $composerLockData = [
     'packages' => $lockData,
@@ -61,4 +62,4 @@ $composerLockData = [
 $contentHash = hash('md5', trim(json_encode($composerLockData)));
 $composerLockData['content-hash'] = $contentHash;
 ksort($composerLockData);
-file_put_contents("{$workingDir}/composer.lock", json_encode($composerLockData, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+file_put_contents("{$workingDir}/composer.lock", json_encode($composerLockData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
