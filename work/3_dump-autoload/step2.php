@@ -24,15 +24,9 @@ function procedure3_2(string $vendorDirPath): string
     $packageFiles = glob("{$vendorDirPath}/*/*/composer.json");
     foreach ($packageFiles as $packageFile) {
         /* === STEP-2 ココから === */
-        $package = json_decode(file_get_contents($packageFile), true);
-        $packageEagerLoadFiles = $package['autoload']['files'] ?? null;
-        if (!$packageEagerLoadFiles) {
-            continue;
-        }
-        $packageDir = dirname($packageFile);
-        foreach ($packageEagerLoadFiles as $eagerLoadFile) {
-            $eagerLoadFiles[] = "{$packageDir}/{$eagerLoadFile}";
-        }
+
+
+
         /* === STEP-2 ココまで === */
     }
 

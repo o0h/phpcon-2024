@@ -1,4 +1,4 @@
-**/vendor/
+**/vendor
 **.cache
 runtime.env
 work/3_dump-autoload/.composer-cache

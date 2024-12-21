@@ -16,6 +16,9 @@ function work2(): void
         foreach ($filesToReset as $file) {
             \Staffroom\FileSystem::removeFileRecursive($file);
         }
+        $vendorDIr = __DIR__ . '/vendor/';
+        \Staffroom\FileSystem::removeFileRecursive($vendorDIr);
+        mkdir($vendorDIr, 0777, true);
     };
 
     $workManager = new \Staffroom\WorkManager(__DIR__, $setUp);

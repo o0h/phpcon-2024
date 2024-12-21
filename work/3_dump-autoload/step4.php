@@ -15,15 +15,10 @@ function procedure3_4(
     $autoloaderScript = <<<CODE
 <?php
 /* === STEP-4 ココから === */
-require_once '{$psr4ClassLoaderPath}';
 
-\$eagerLoadFiles = require '{$eagerLoadFilesPath}';
-foreach (\$eagerLoadFiles as \$file) {
-    require_once \$file;
-}
 
-\$psr4ClassLoader = new Psr4ClassLoader('{$psr4ClassMapPath}');
-spl_autoload_register([\$psr4ClassLoader, 'loadClass']);
+
+
 /* === STEP-4 ココまで === */
 CODE;
 

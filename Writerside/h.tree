@@ -7,4 +7,6 @@
                  start-page="starter-topic.md">
 
     <toc-element topic="starter-topic.md"/>
+    <toc-element topic="ざっくりComposerの仕組み.md" toc-title="ざっくりComposerの仕組み"/>
+    <toc-element topic="installコマンドを作ってみよう.md"/>
 </instance-profile>
